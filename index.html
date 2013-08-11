@@ -60,7 +60,7 @@
 <pre><code>git clone git://github.com/ghost-kit/GHOST.git
 </code></pre>
 
-<p>Until binaries are available, you can build the tool-kit from source. Currently, the toolkit only builds on linux with the following instructions.  As the build system is in active development, these instructions will be changed as it successfully builds on other systems. The following instructions will allow you build the tool-kit, including all required dependencies, by issuing the commands (on UNIX type systems):</p>
+<p>Until binaries are available, you can build the tool-kit from source. Currently, the toolkit only builds on linux with the following instructions.  As the build system is in active development, these instructions will be changed as it successfully builds on other systems. The following instructions will allow you build the tool-kit, including all required dependencies (Except ParaView), by issuing the commands (on UNIX type systems): ( <strong>Please Note:</strong> You <em>must</em> have a local built version of paraview in order to build this tool-kit.  If you want a binary compatible version of the plugin, you must build against the ParaView Superbuild.)</p>
 
 <pre><code>git clone git://github.com/ghost-kit/GHOST.git
 cd GHOST
@@ -68,7 +68,7 @@ git checkout v0.2.0a
 cd ..
 mkdir ghost-build
 cd ghost-build
-cmake ../GHOST 
+cmake ../GHOST -DParaView_DIR=&lt;path to paraview build&gt;
 make
 </code></pre>
 
