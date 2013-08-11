@@ -60,9 +60,13 @@
 <pre><code>git clone git://github.com/ghost-kit/GHOST.git
 </code></pre>
 
-<p>As soon as it is ready, you will be able to a master build, including all required dependencies, by issuing the command (on UNIX type systems):</p>
+<p>Until binaries are available, you can build the tool-kit from source. The following instructions will allow you build the tool-kit, including all required dependencies, by issuing the commands (on UNIX type systems):</p>
 
-<pre><code>mkdir ghost-build
+<pre><code>git clone git://github.com/ghost-kit/GHOST.git
+cd GHOST
+git checkout v0.1.1.testing
+cd ..
+mkdir ghost-build
 cd ghost-build
 cmake ../GHOST -DENABLE_ghost=true
 make
