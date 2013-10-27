@@ -1,40 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
     <title>GHOSTkit by ghost-kit</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
   </head>
+
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/ghost-kit">View On GitHub</a></li>
-        </nav>
-      </div><!-- end header -->
 
-    <div class="wrapper">
+    <header>
+      <div class="container">
+        <h1>GHOSTkit</h1>
+        <h2>Geospace/Heliosphere Observation &amp; Simulation Tool-kit</h2>
 
-      <section>
-        <div id="title">
-          <h1>GHOSTkit</h1>
-          <p>Geospace/Heliosphere Observation &amp; Simulation Tool-kit</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/ghost-kit">ghost-kit</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+        <section id="downloads">
+          <a href="https://github.com/ghost-kit" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
 
+    <div class="container">
+      <section id="main_content">
         <h3>
 <a name="welcome-to-the-geospaceheliosphere-observation--simulation-tool-kit" class="anchor" href="#welcome-to-the-geospaceheliosphere-observation--simulation-tool-kit"><span class="octicon octicon-link"></span></a>Welcome to the Geospace/Heliosphere Observation &amp; Simulation Tool-kit</h3>
 
@@ -63,21 +54,32 @@
 <p>Until binaries are available, you can build the tool-kit from source. Currently, the toolkit only builds on linux with the following instructions.  As the build system is in active development, these instructions will be changed as it successfully builds on other systems. The following instructions will allow you build the tool-kit, including all required dependencies (Except ParaView), by issuing the commands (on UNIX type systems): ( <strong>Please Note:</strong> You <em>must</em> have a local built version of paraview in order to build this tool-kit.  If you want a binary compatible version of the plugin, you must build against the ParaView Superbuild.)</p>
 
 <pre><code>git clone git://github.com/ghost-kit/GHOST.git
-cd GHOST
-git checkout v0.2.0a
-cd ..
 mkdir ghost-build
 cd ghost-build
-cmake ../GHOST -DParaView_DIR=&lt;path to paraview build&gt;
+ccmake ../GHOST -DNUM_CORES=## 
 make
 </code></pre>
+
+<p>-DNUM_CORES=## specifies the number of build cores you want to use when building the system.  You can set this to more than the number of physical cores in your machine to ensure you are using all available resources to build. (for the programers out there, this sets the -j flag on the compiler)</p>
+
+<p>Within CCMAKE, you will need to set appropriate options.</p>
+
+<pre><code>1) set build type to "Release" (Debug build does not yet build properly)
+If building on a MAC:
+1) set CMAKE_OSX_ARCHITECTURES to "x86_64"
+2) set CMAKE_OSX_DEPLOYMENT_TARGET to "10.6"
+3) CMAKE_OSX_SYSROOT to your SDK path***
+</code></pre>
+
+<p>*** When building on the Mac, you need to use either the 10.6 or 10.7 SDK.  The build will not complete on the 10.8 or 10.9 SDK.  If you are using XCODE 5.0.1, you will need to download the Xcode 4.6.3 install package from the Apple Developer site and extract the 10.7 SDK.  To Build on OS X 10.9, you will need to place the 10.7 SDK in an accessible directory (i.e. ~/SDKs/) and point set CMAKE_OSX_SYSROOT to this SDK.</p>
+
+<p>The integrated build system will build all required dependencies (including ParaView), and, if you are on a mac, fix the plugin to work with the binary.</p>
 
 <p>The final plug-in file will be placed in the directory <strong>ghost-build/install/release/</strong>
 To use the plugin, you will need to place it in a safe place on your hard drive, and then load it with the ParaView plugin manager.</p>
       </section>
-
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
